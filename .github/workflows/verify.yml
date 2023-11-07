@@ -1,0 +1,12 @@
+name: Run Unit Tests with Code Coverage on PRs
+
+# Controls when the action will run. 
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2

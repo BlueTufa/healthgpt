@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "healthgpt"
+version = "0.1.2"
+description = "A Chat-GPT 3.5 based Health sentiment analyzer"
+authors = ["Dan White <opensource@bluetufa.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-jose = "^3.3.0"
+slowapi = "^0.1.8"
+uvicorn = "^0.24.0.post1"
+fastapi = "^0.104.1"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.1.0"
+pytest = "^7.4.2"
+python-semantic-release = "^8.1.1"
+pre-commit = "^3.5.0"
+httpx = "^0.25.1"
+mypy = "^1.6.1"
+types-requests = "^2.31.0.10"
+
+[tool.semantic_release]
+branch = "main"
+upload_to_repository = true
+commit_subject = "[skip ci] {version}"
+version_toml = [
+    "pyproject.toml:tool.poetry.version",
+]
+
+[tool.black]
+line-length = 120
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests"
+]
+
+pythonpath = [
+  ".",
+  "src"
+]
+
+[tool.ruff]
+# Enable pycodestyle and pyflakes
+select = ["E", "F"]
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+line-length = 120
+target-version = "py311"
