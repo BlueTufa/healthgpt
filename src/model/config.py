@@ -10,7 +10,7 @@ class Config(BaseModel):
 
 def get_config() -> Config:
     return Config(
-        bearer_token=os.environ["BEARER_TOKEN"],
+        bearer_token=os.environ.get("BEARER_TOKEN", ""),
         url=os.environ.get("BASE_URL", "https://mastodon.social/api"),
         limit=int(os.environ.get("DEFAULT_LIMIT", 5)),
     )

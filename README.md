@@ -6,6 +6,7 @@ A GPT 3.5 Health utility
 ## Getting Started
 ```bash
 poetry install
+poetry shell
 pre-commit install
 pytest --cov -vv
 ```

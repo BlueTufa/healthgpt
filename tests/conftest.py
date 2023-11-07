@@ -1,3 +1,4 @@
+import os
 import pytest
 from collections.abc import Generator
 
@@ -6,6 +7,6 @@ from collections.abc import Generator
 def api_headers() -> Generator:
     headers = {
         "Content-Type": "application/json",
-        "Authorization": "Bearer ",
+        "Authorization": f"Bearer {os.environ.get('BEARER_TOKEN', '')}",
     }
     yield headers
