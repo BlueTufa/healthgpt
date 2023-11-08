@@ -270,6 +270,17 @@ files = [
 ]
 
 [[package]]
+name = "distro"
+version = "1.8.0"
+description = "Distro - an OS platform information API"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "distro-1.8.0-py3-none-any.whl", hash = "sha256:99522ca3e365cac527b44bde033f64c6945d90eb9f769703caaec52b09bbd3ff"},
+    {file = "distro-1.8.0.tar.gz", hash = "sha256:02e111d1dc6a50abb8eed6bf31c3e48ed8b0830d1ea2a1b78c61765c2513fdd8"},
+]
+
+[[package]]
 name = "dotty-dict"
 version = "1.3.1"
 description = "Dictionary wrapper for quick access to deeply nested keys."
@@ -693,6 +704,28 @@ files = [
 setuptools = "*"
 
 [[package]]
+name = "openai"
+version = "1.1.1"
+description = "Client library for the openai API"
+optional = false
+python-versions = ">=3.7.1"
+files = [
+    {file = "openai-1.1.1-py3-none-any.whl", hash = "sha256:1496418b132c88352bcfffa8c24e83a69f0e01b1484cbb7bb48f722aad8fd6e1"},
+    {file = "openai-1.1.1.tar.gz", hash = "sha256:80e49cb21d8445f6d51339b8af7376fc83302c78ab78578b78133ef89634869d"},
+]
+
+[package.dependencies]
+anyio = ">=3.5.0,<4"
+distro = ">=1.7.0,<2"
+httpx = ">=0.23.0,<1"
+pydantic = ">=1.9.0,<3"
+tqdm = ">4"
+typing-extensions = ">=4.5,<5"
+
+[package.extras]
+datalib = ["numpy (>=1)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
+
+[[package]]
 name = "packaging"
 version = "23.2"
 description = "Core utilities for Python packages"
@@ -950,6 +983,23 @@ pytest = ">=4.6"
 
 [package.extras]
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
+
+[[package]]
+name = "pytest-mock"
+version = "3.12.0"
+description = "Thin-wrapper around the mock package for easier use with pytest"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pytest-mock-3.12.0.tar.gz", hash = "sha256:31a40f038c22cad32287bb43932054451ff5583ff094bca6f675df2f8bc1a6e9"},
+    {file = "pytest_mock-3.12.0-py3-none-any.whl", hash = "sha256:0972719a7263072da3a21c7f4773069bcc7486027d7e8e1f81d98a47e701bc4f"},
+]
+
+[package.dependencies]
+pytest = ">=5.0"
+
+[package.extras]
+dev = ["pre-commit", "pytest-asyncio", "tox"]
 
 [[package]]
 name = "python-gitlab"
@@ -1253,6 +1303,26 @@ files = [
 ]
 
 [[package]]
+name = "tqdm"
+version = "4.66.1"
+description = "Fast, Extensible Progress Meter"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tqdm-4.66.1-py3-none-any.whl", hash = "sha256:d302b3c5b53d47bce91fea46679d9c3c6508cf6332229aa1e7d8653723793386"},
+    {file = "tqdm-4.66.1.tar.gz", hash = "sha256:d88e651f9db8d8551a62556d3cff9e3034274ca5d66e93197cf2490e2dcb69c7"},
+]
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+dev = ["pytest (>=6)", "pytest-cov", "pytest-timeout", "pytest-xdist"]
+notebook = ["ipywidgets (>=6)"]
+slack = ["slack-sdk"]
+telegram = ["requests"]
+
+[[package]]
 name = "types-requests"
 version = "2.31.0.10"
 description = "Typing stubs for requests"
@@ -1419,4 +1489,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "92fb87518403b819d4b1fb737f84df6cbb1080440dcefc75739f534529464d59"
+content-hash = "1c73bc75a8daaacc7292ffdf372c2e94a005c2ad87ceb2d75264cc30addf10ac"

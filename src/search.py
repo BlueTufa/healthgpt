@@ -1,35 +1,26 @@
-from util.common import log
+from typing import List
 from fastapi import Depends
 from fastapi.routing import APIRouter
 from model.config import Config, get_config
 from model.timeline import Timeline
-import requests
+from model.search_results import SearchResults
+from integrations.mastodon import get_mastodon_timeline_text
+from integrations.openai import send_to_chatgpt
 
 # TODO: authorization required.
 # jwt_auth = JwtBearerTokenAuthorizer()
+# router = APIRouter(dependencies=[Depends(jwt_auth)])
 router = APIRouter()
 
 
 @router.get("/search")
-async def search(tag: str, config: Config = Depends(get_config)):
-    # Unfortunately, the Twitter API is no longer free.
-    # In the interests of managing the scope of this project,
-    # I found a somewhat similar but lacking timeline view in the Mastodon API.
-    # This returns a result-limited set of Mastodon "statuses" by a particular tag.
-    url = f"{config.url}/v1/timelines/tag/{tag}?limit={config.limit}"
-    log.debug("Searching mastodon timeline for {tag} using {url}")
-
-    # Architecturally, this type of double-hop REST call is discouraged.
-    # This is especially problematic for open-ended operations such as a search.
-    # My recommendation would be to build out a better async pattern using
-    # a middleware such as Celery, possibly backed by a redis store.
-    search_results = requests.get(
-        url,
-        headers={"Authorization": f"Bearer {config.bearer_token}"},
-    )
-    if search_results.status_code == 200:
-        return search_results.content
+async def search(tag: str, config: Config = Depends(get_config)) -> List[SearchResults]:
+    # This is a proof-of-concept ONLY and it needs a redesign.
+    # This would be way too slow for general consumption.
+    # Redis / Celery might be a great fit and I would love to talk about architectural solutions.
+    timeline = get_mastodon_timeline_text(tag, config)
+    return list(map(lambda t: gpt_response_content(t, send_to_chatgpt(t)), timeline))
 
 
-def get_mastodon_timeline_text(config: Config) -> Timeline:
-    pass
+def gpt_response_content(timeline: Timeline, gpt_response) -> SearchResults:
+    return SearchResults(timeline=timeline, message=gpt_response.content)
