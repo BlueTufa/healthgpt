@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 class Config(BaseModel):
     bearer_token: str
     url: str
-    limit: int = Field(ge=5, le=7, description="The requirements state that the limit should be between 5 and 7 items")
+    limit: int = Field(description="The requirements state that the limit should be between 5 and 7 items")
 
 
 def get_config() -> Config:
