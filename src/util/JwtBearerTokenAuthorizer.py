@@ -13,10 +13,12 @@ class JwtBearerTokenAuthorizer:
 
     def __call__(self, request: Request):
         if self.jwk is None:
+            # TODO: file I/O is not necessary here.  env var?
             with open(path.join(path.dirname(__file__), "public.jwk")) as key:
                 self.jwk = json.loads(key.read())
 
         try:
+            # TODO: scrape the Bearer token prefix, when present
             token = request.headers.get("Authorization")
             if not token:
                 raise
@@ -24,8 +26,8 @@ class JwtBearerTokenAuthorizer:
             # expiration date, issuer, etc
             # simply hard-code the issuer for demo purposes
             jwt.decode(token, self.jwk, "RS256", {"verify_aud": True}, issuer="bluetufa.com")
-        except Exception:
-            log.warning("Authentication failed for ")
+        except BaseException as e:
+            log.warning("JWT Authentication failed. %s", e)
             raise HTTPException(
                 status_code=401,
                 detail="Not authenticated",
