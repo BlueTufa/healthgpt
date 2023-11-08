@@ -2,12 +2,12 @@
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 ![GitHub Actions Status](https://github.com/BlueTufa/healthgpt/actions/workflows/verify.yml/badge.svg)
 
-A GPT-based Social Media Analysis Utility
+A GPT-based social media analysis utility
 
 ## Getting Started
 Follow these steps to establish your initial development environment setup.  You can run the unit tests to verify that you have all baseline requirements met before continuing.
 
-You may need to set one or more environment variables to get unit tests passing.  Please see `.env.sample` for example environment variables.
+> You may need to set one or more environment variables before unit tests will pass.  Please see `.env.sample` for example environment variables.
 ```bash
 poetry install
 poetry shell
@@ -49,7 +49,7 @@ Example output:
 * Containerized deployment
 * Poetry
 * pre-commit automated linting
-* Integrated GitHub Actions
+* GitHub Actions integration
 
 ## What's left to do
 * Performance optimization.
