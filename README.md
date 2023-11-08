@@ -50,6 +50,7 @@ Example output:
 * Poetry
 * pre-commit automated linting
 * GitHub Actions integration
+* Rate limiting
 
 ## What's left to do
 * Performance optimization.
