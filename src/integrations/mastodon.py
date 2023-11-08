@@ -18,7 +18,7 @@ def get_mastodon_timeline_text(tag: str, config: Config) -> List[Timeline]:
     # This is especially problematic for open-ended operations such as a search.
     # My recommendation would be to build out a better async pattern using
     # a middleware such as Celery, possibly backed by a redis store.
-    # TODO: need an an accept header here.
+    # TODO: need an an accept-content header here.
     search_results = requests.get(
         url,
         headers={"Authorization": f"Bearer {config.bearer_token}"},
